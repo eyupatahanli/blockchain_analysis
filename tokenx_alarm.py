@@ -74,11 +74,3 @@ while True:
         time.sleep(5)
 
 
-"""        # Her bir işlemi işleyin
-        for tx in transactions:
-            # İşlem verilerini alın (örneğin, 'from', 'to', 'value' gibi)
-            sender = tx['from']
-            receiver = tx['to']
-            value = tx['value']
-            # İşlem verilerini kullanarak istediğiniz işlemleri yapın
-            # ..."""
