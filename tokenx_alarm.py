@@ -14,7 +14,17 @@ chat_id = os.getenv("chat_id")
 # İşlem geçmişi için BEP-20 token adresini env dosyasından çekme
 #Todo: buna incelenecek cüzdan diyelim
 token_address = os.getenv("ben").lower()
-
+def send_message(kim=None, islem=None, token=None,value=None,islem_var=1):
+    telegram_token = os.getenv("telegram_token")
+    chat_id = os.getenv("chat_id")
+    if islem_var ==1:
+        message = f"{kim}, {value} adet {token} {islem}"
+        url_telegram = f"https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={chat_id}&text={message}"
+        requests.get(url_telegram).json()
+    else:
+        message = "işlem yok"
+        url_telegram = f"https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={chat_id}&text={message}"
+        requests.get(url_telegram).json()
 
 while True:
     #5 saniyede bir döngü çalışsın
@@ -39,29 +49,34 @@ while True:
                 if transactions[i]["from"] == token_address:
                     parite = transactions[i]["tokenSymbol"]
                     adet = transactions[i]["value"]
-                    message = f"{i}.işlem türü satış, işlem paritesi{parite},adedi = {adet}"
+                    #message = f"{i}.işlem türü satış, işlem paritesi{parite},adedi = {adet}"
                     #todo:usdt ya da bnb değerini de ekle
-                    url_telegram = url = f"https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={chat_id}&text={message}"
-                    requests.get(url_telegram).json()
+                    #url_telegram = url = f"https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={chat_id}&text={message}"
+                    #requests.get(url_telegram).json()
                     print(f"{i}.işlem türü satış, işlem paritesi{parite},adedi = {adet}")
+                    send_message("eyup","sattı",token=parite,value = adet)
                 if transactions[i]["to"] == token_address:
                     parite = transactions[i]["tokenSymbol"]
                     adet = transactions[i]["value"]
-                    message = f"{i}.işlem türü satış, işlem paritesi{parite},adedi = {adet}"
+                    #message = f"{i}.işlem türü satış, işlem paritesi{parite},adedi = {adet}"
                     #todo:usdt ya da bnb değerini de ekle
-                    url_telegram = url = f"https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={chat_id}&text={message}"
-                    requests.get(url_telegram).json()
+                    #url_telegram = url = f"https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={chat_id}&text={message}"
+                    #requests.get(url_telegram).json()
                     #todo:usdt ya da bnb değerini de ekle
                     print(f"{i}.işlem türü alış, işlem paritesi{parite},adedi = {adet}")
+                    send_message("eyup", "aldı", token=parite, value=adet)
                 else:
                     parite = transactions[i]["tokenSymbol"]
                     print(f"başka bir işlem yapıldı.parite ={parite}")
         else:
             print("yeni işlem yok")
-            message = "yeni işlem yok"
+            #message = "yeni işlem yok"
             # todo:usdt ya da bnb değerini de ekle
-            url_telegram = url = f"https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={chat_id}&text={message}"
-            requests.get(url_telegram).json()
+            #url_telegram = url = f"https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={chat_id}&text={message}"
+            #requests.get(url_telegram).json()
+            #send_message("eyup", "", token=parite, value=adet)
+
+            send_message(islem_var=0)
 
 
 
