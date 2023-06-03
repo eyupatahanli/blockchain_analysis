@@ -65,7 +65,7 @@ while True:
             else:
                 print("yeni işlem yok")
                 send_message(islem_var=0)
-        time.sleep(5)
+        time.sleep(2)
 
     else:
         print('API isteği başarısız oldu. Hata:', data['message'])
@@ -75,6 +75,6 @@ while True:
         message = message + str(time.ctime())
         url_telegram = f"https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={chat_id}&text={message}"
         requests.get(url_telegram).json()
-        time.sleep(5)
+        time.sleep(2)
 
 
