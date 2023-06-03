@@ -8,6 +8,8 @@ load_dotenv()
 
 #API anahtarı env dosyasından çekme
 api_key = os.getenv("api")
+telegram_token = os.getenv("token")
+chat_id = os.getenv("chat_id")
 
 # İşlem geçmişi için BEP-20 token adresini env dosyasından çekme
 #Todo: buna incelenecek cüzdan diyelim
@@ -37,11 +39,18 @@ while True:
                 if transactions[i]["from"] == token_address:
                     parite = transactions[i]["tokenSymbol"]
                     adet = transactions[i]["value"]
+                    message = f"{i}.işlem türü satış, işlem paritesi{parite},adedi = {adet}"
                     #todo:usdt ya da bnb değerini de ekle
+                    url_telegram = url = f"https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={chat_id}&text={message}"
+                    requests.get(url_telegram).json()
                     print(f"{i}.işlem türü satış, işlem paritesi{parite},adedi = {adet}")
                 if transactions[i]["to"] == token_address:
                     parite = transactions[i]["tokenSymbol"]
                     adet = transactions[i]["value"]
+                    message = f"{i}.işlem türü satış, işlem paritesi{parite},adedi = {adet}"
+                    #todo:usdt ya da bnb değerini de ekle
+                    url_telegram = url = f"https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={chat_id}&text={message}"
+                    requests.get(url_telegram).json()
                     #todo:usdt ya da bnb değerini de ekle
                     print(f"{i}.işlem türü alış, işlem paritesi{parite},adedi = {adet}")
                 else:
@@ -49,6 +58,10 @@ while True:
                     print(f"başka bir işlem yapıldı.parite ={parite}")
         else:
             print("yeni işlem yok")
+            message = "yeni işlem yok"
+            # todo:usdt ya da bnb değerini de ekle
+            url_telegram = url = f"https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={chat_id}&text={message}"
+            requests.get(url_telegram).json()
 
 
 
