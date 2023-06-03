@@ -13,6 +13,7 @@ chat_id = os.getenv("chat_id")
 # İşlem geçmişi için BEP-20 token adresini env dosyasından çekme
 #Todo: buna incelenecek cüzdan diyelim
 token_address = os.getenv("ben").lower()
+
 def send_message(kim=None, islem=None, token=None,value=None,islem_var=1):
     telegram_token = os.getenv("telegram_token")
     chat_id = os.getenv("chat_id")
