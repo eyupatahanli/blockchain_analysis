@@ -12,7 +12,7 @@ chat_id = os.getenv("chat_id")
 
 # İşlem geçmişi için BEP-20 token adresini env dosyasından çekme
 #Todo: buna incelenecek cüzdan diyelim
-token_address = os.getenv("ben").lower()
+token_address = os.getenv("biryar").lower()
 
 def send_message(kim=None, islem=None, token=None,value=None,islem_var=1):
     telegram_token = os.getenv("telegram_token")
@@ -22,11 +22,11 @@ def send_message(kim=None, islem=None, token=None,value=None,islem_var=1):
         message = message +str(time.ctime())
         url_telegram = f"https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={chat_id}&text={message}"
         requests.get(url_telegram).json()
-    else:
-        message = "işlem yok "
-        message = message + str(time.ctime())
-        url_telegram = f"https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={chat_id}&text={message}"
-        requests.get(url_telegram).json()
+    #else:
+        #message = "işlem yok "
+        #message = message + str(time.ctime())
+        #url_telegram = f"https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={chat_id}&text={message}"
+        #requests.get(url_telegram).json()
 
 while True:
     # BscScan API'sine GET isteği göndererek işlem geçmişini alın
