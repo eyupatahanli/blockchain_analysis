@@ -9,7 +9,7 @@ load_dotenv()
 
 logging.basicConfig(
     level=logging.ERROR,
-    filename="error.log",
+    filename="other/error.log",
     filemode="a",
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
