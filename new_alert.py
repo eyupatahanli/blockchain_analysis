@@ -6,23 +6,27 @@ import time
 import logging
 import sys
 
+load_dotenv()
+a = (os.getenv("e")).lower()
 
 wallets = pd.DataFrame({'id':[0,1,2,3],
                         'name':['d1','b1','d2','e'],
-                        'wallet':['0x2ffe5ef40fd39da23e61ebef4b68e15ff9843061',
-                                  '0xdc586eef0e3dd38b6894ce2c6dce4b7c1909890e',
-                                  '0x99c388b40c0bcfc88abf7e9ce52d87de5a788050',
-                                  '0x2bed2ad1aefe1ec04764391b1c5fd4602a67026f'],
+                        'wallet':[(os.getenv("d1")).lower(),
+                                  (os.getenv("b1")).lower(),
+                                  (os.getenv("d2")).lower(),
+                                  (os.getenv("e")).lower()],
                         'number':[0,0,0,0]
                         })
 
-api_key = 'AHYIZA4CHJ7QZHK8Z79NE3GVR4BR6FQIR1'
-telegram_token = '6123291587:AAHnqCp6Me63Ltf01Kic6jkHc678KzpXIsU'
-chat_id = '998491858'
+
+api_key = os.getenv("api_key")
+
+telegram_token = os.getenv("telegram_token")
+chat_id = os.getenv("chat_id")
 
 def send_message(kim=None, islem=None, token=None, value=None, islem_var=1):
-    telegram_token = '6123291587:AAHnqCp6Me63Ltf01Kic6jkHc678KzpXIsU'
-    chat_id = '998491858'
+    telegram_token = os.getenv("telegram_token")
+    chat_id = os.getenv("998491858")
     if islem_var == 1:
         message = f"{kim}, {value} adet {token} {islem}"
         message = message + '\n' + str(time.ctime())
@@ -72,8 +76,8 @@ while True:
 
     except Exception as e:
         print('Hata oluştu:', str(e))
-        telegram_token = '6123291587:AAHnqCp6Me63Ltf01Kic6jkHc678KzpXIsU'
-        chat_id = '998491858'
+        telegram_token = os.getenv("telegram_token")
+        chat_id = os.getenv("998491858")
         message_err = str(e)
         message_err = message_err + '\n' + str(time.ctime())
         url_telegram = f"https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={chat_id}&text={message_err}"
