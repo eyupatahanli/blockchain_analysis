@@ -15,6 +15,7 @@ wallets = pd.DataFrame({'id':[0,1,2,3],
                                   '0x2bed2ad1aefe1ec04764391b1c5fd4602a67026f'],
                         'number':[0,0,0,0]
                         })
+
 api_key = 'AHYIZA4CHJ7QZHK8Z79NE3GVR4BR6FQIR1'
 telegram_token = '6123291587:AAHnqCp6Me63Ltf01Kic6jkHc678KzpXIsU'
 chat_id = '998491858'
